@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="assets">
+    <file>martialarts_g.png</file>
+    <file>Taekwondo,_Rio_2016.png</file>
+  </qresource>
+</RCC>

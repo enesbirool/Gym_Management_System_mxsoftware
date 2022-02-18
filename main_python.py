@@ -312,7 +312,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Tarih"))
         item = self.tableWidget_2.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Ücret"))
-        self.label_9.setText(_translate("MainWindow", "Coded By Enes Birol"))
+        self.label_9.setText(_translate("MainWindow", "Coded By MXSoftware"))
         self.menuMenu.setTitle(_translate("MainWindow", "Menu"))
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionExport_Data.setText(_translate("MainWindow", "Export Data"))

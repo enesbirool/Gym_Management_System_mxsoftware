@@ -24,7 +24,7 @@
     <hr />
     <details>
       <summary>Project Details</summary>
-        <img src=""></img>
+        <img src="./photos/1.png"></img>
         <img src=""></img>
         <img src=""></img>
         <img src=""></img>

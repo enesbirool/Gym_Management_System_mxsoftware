@@ -128,7 +128,7 @@ class MainPage(QMainWindow):
                 self.btnTemizle()
                 self.btnListeleClick()
             except Exception as error:
-                self.ui.statusBar.showMessage("Kayıt Başarısız"+str(error),5000)
+                self.ui.statusBar.showMessage("Kayıt Başarısız "+str(error),5000)
         else:
             self.ui.statusBar.showMessage("Alanlar Boş olamaz...",5000)
 

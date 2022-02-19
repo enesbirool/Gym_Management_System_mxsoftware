@@ -85,10 +85,10 @@
           <item>
            <widget class="QLineEdit" name="ogr_tc_edit">
             <property name="inputMask">
-             <string/>
+             <string>99999999999</string>
             </property>
             <property name="placeholderText">
-             <string>11 numaralı tc kimlik</string>
+             <string>11 rakam uzunluğunda olmalı</string>
             </property>
            </widget>
           </item>
@@ -155,6 +155,9 @@
           </item>
           <item>
            <widget class="QLineEdit" name="ogr_number_edit">
+            <property name="inputMask">
+             <string/>
+            </property>
             <property name="placeholderText">
              <string>+90 (---) --- -- --</string>
             </property>
@@ -348,6 +351,9 @@
         <property name="autoScrollMargin">
          <number>16</number>
         </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
         <property name="rowCount">
          <number>100</number>
         </property>
@@ -516,6 +522,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <property name="topMargin">
+       <number>10</number>
+      </property>
       <property name="bottomMargin">
        <number>0</number>
       </property>
@@ -675,6 +684,9 @@
         </property>
         <property name="autoScrollMargin">
          <number>16</number>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
         </property>
         <property name="dragEnabled">
          <bool>false</bool>

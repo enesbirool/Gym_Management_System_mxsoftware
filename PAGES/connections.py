@@ -1,11 +1,16 @@
 import sqlite3 as sql
+import os
 
 def main():
+    dirName = './db'
+    if not os.path.exists(dirName):
+        os.makedirs(dirName)
+    else:    
+        pass
     try:
        db = sql.connect('./db/mxsoftware.db')
-       print("Database created")
-    except:
-        print("failed to create database")
+    except Exception as error:
+        print("Hata Mesajı : "+error)
     finally:
         db.close()
 

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from GUI.app_info_python import Ui_Form
+from PAGES.app_info_python import Ui_Form
 
 class AppInfoPage(QWidget):
     def __init__(self):

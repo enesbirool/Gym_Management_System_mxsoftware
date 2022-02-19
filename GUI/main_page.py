@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
-from main_python import Ui_MainWindow
-from app_info import AppInfoPage
+from GUI.main_python import Ui_MainWindow
+from GUI.app_info import AppInfoPage
 from PyQt5.QtWidgets import QMessageBox
 
 class MainPage(QMainWindow):

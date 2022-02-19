@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>531</height>
+    <height>521</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -43,7 +43,7 @@
    <string>Sporcu Kayıt ve Aidat Programı</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="assets/icons.qrc">
+   <iconset resource="../assets/icons.qrc">
     <normaloff>:/assets/martialarts_g.png</normaloff>:/assets/martialarts_g.png</iconset>
   </property>
   <property name="styleSheet">
@@ -83,7 +83,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ogr_tc_edit"/>
+           <widget class="QLineEdit" name="ogr_tc_edit">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>11 numaralı tc kimlik</string>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_2">
@@ -113,7 +120,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ogr_name_surname_edit"/>
+           <widget class="QLineEdit" name="ogr_name_surname_edit">
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_3">
@@ -143,7 +154,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ogr_number_edit"/>
+           <widget class="QLineEdit" name="ogr_number_edit">
+            <property name="placeholderText">
+             <string>+90 (---) --- -- --</string>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_4">
@@ -238,7 +253,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="register_edit"/>
+           <widget class="QLineEdit" name="register_edit">
+            <property name="placeholderText">
+             <string>01/01/2022</string>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer">
@@ -265,7 +284,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="register_finish_edit"/>
+           <widget class="QLineEdit" name="register_finish_edit">
+            <property name="placeholderText">
+             <string>01/01/2022</string>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_6">
@@ -907,7 +930,7 @@
   </action>
  </widget>
  <resources>
-  <include location="assets/icons.qrc"/>
+  <include location="../assets/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

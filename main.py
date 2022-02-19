@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication
-from main_page import MainPage
+from GUI.main_page import MainPage
 from qt_material import apply_stylesheet
 
 

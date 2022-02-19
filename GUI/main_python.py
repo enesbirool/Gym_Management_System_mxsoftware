@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:/project/main.ui'
+# Form implementation generated from reading ui file 'D:/project/GUI/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -12,7 +12,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
-        MainWindow.resize(1100, 531)
+        MainWindow.resize(1100, 521)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setSizeIncrement(QtCore.QSize(800, 200))
         MainWindow.setBaseSize(QtCore.QSize(700, 200))
@@ -45,6 +45,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.ogr_tc_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.ogr_tc_edit.setInputMask("")
         self.ogr_tc_edit.setObjectName("ogr_tc_edit")
         self.horizontalLayout.addWidget(self.ogr_tc_edit)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -57,6 +58,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_5.addWidget(self.label_5)
         self.ogr_name_surname_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.ogr_name_surname_edit.setPlaceholderText("")
         self.ogr_name_surname_edit.setObjectName("ogr_name_surname_edit")
         self.horizontalLayout_5.addWidget(self.ogr_name_surname_edit)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -287,8 +289,10 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Sporcu Kayıt ve Aidat Programı"))
         self.label.setText(_translate("MainWindow", "Öğrenci TC   :    "))
+        self.ogr_tc_edit.setPlaceholderText(_translate("MainWindow", "11 numaralı tc kimlik"))
         self.label_5.setText(_translate("MainWindow", "Adı/Soyadı   :     "))
         self.label_2.setText(_translate("MainWindow", "Telefon        :     "))
+        self.ogr_number_edit.setPlaceholderText(_translate("MainWindow", "+90 (---) --- -- --"))
         self.label_3.setText(_translate("MainWindow", "Branş            :    "))
         self.brans_combox.setItemText(0, _translate("MainWindow", "Taekwondo"))
         self.brans_combox.setItemText(1, _translate("MainWindow", "Judo"))
@@ -296,7 +300,9 @@ class Ui_MainWindow(object):
         self.brans_combox.setItemText(3, _translate("MainWindow", "Karate"))
         self.brans_combox.setItemText(4, _translate("MainWindow", "Fitness"))
         self.label_4.setText(_translate("MainWindow", "Kayıt Tarihi    :   "))
+        self.register_edit.setPlaceholderText(_translate("MainWindow", "01/01/2022"))
         self.label_6.setText(_translate("MainWindow", "Kayıt Bitiş       :  "))
+        self.register_finish_edit.setPlaceholderText(_translate("MainWindow", "01/01/2022"))
         item = self.ogrenciler_tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "TC"))
         item = self.ogrenciler_tableWidget.horizontalHeaderItem(1)
@@ -332,4 +338,4 @@ class Ui_MainWindow(object):
         self.actionExport_Data.setText(_translate("MainWindow", "Export Data"))
         self.actionApp_info.setText(_translate("MainWindow", "App İnfo"))
 
-import icons_rc
+from icons_rc import *

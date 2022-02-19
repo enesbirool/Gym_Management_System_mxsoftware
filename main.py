@@ -3,7 +3,6 @@ from PAGES.main_page import MainPage
 from qt_material import apply_stylesheet
 
 
-
 app=QApplication([])
 window=MainPage()
 window.show()

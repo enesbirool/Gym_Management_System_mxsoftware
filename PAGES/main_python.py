@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:/project/GUI/main.ui'
+# Form implementation generated from reading ui file 'D:/project/PAGES/GUI/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -12,7 +12,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
-        MainWindow.resize(1100, 521)
+        MainWindow.resize(1100, 542)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setSizeIncrement(QtCore.QSize(800, 200))
         MainWindow.setBaseSize(QtCore.QSize(700, 200))
@@ -271,6 +271,9 @@ class Ui_MainWindow(object):
         self.menuMenu = QtWidgets.QMenu(self.menubar)
         self.menuMenu.setObjectName("menuMenu")
         MainWindow.setMenuBar(self.menubar)
+        self.statusBar = QtWidgets.QStatusBar(MainWindow)
+        self.statusBar.setObjectName("statusBar")
+        MainWindow.setStatusBar(self.statusBar)
         self.actionExit = QtWidgets.QAction(MainWindow)
         self.actionExit.setObjectName("actionExit")
         self.actionExport_Data = QtWidgets.QAction(MainWindow)
@@ -338,4 +341,4 @@ class Ui_MainWindow(object):
         self.actionExport_Data.setText(_translate("MainWindow", "Export Data"))
         self.actionApp_info.setText(_translate("MainWindow", "App İnfo"))
 
-from icons_rc import *
+import icons_rc

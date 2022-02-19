@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>521</height>
+    <height>542</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -43,7 +43,7 @@
    <string>Sporcu Kayıt ve Aidat Programı</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../assets/icons.qrc">
+   <iconset resource="../../assets/icons.qrc">
     <normaloff>:/assets/martialarts_g.png</normaloff>:/assets/martialarts_g.png</iconset>
   </property>
   <property name="styleSheet">
@@ -910,6 +910,7 @@
    </widget>
    <addaction name="menuMenu"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
@@ -930,7 +931,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../assets/icons.qrc"/>
+  <include location="../../assets/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

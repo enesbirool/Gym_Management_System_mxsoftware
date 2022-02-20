@@ -78,7 +78,7 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Öğrenci TC   :    </string>
+             <string>Öğrenci TC    :   </string>
             </property>
            </widget>
           </item>
@@ -115,12 +115,12 @@
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>Adı/Soyadı   :     </string>
+             <string>İsim               :   </string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ogr_name_surname_edit">
+           <widget class="QLineEdit" name="ogr_name_edit">
             <property name="placeholderText">
              <string/>
             </property>
@@ -142,6 +142,33 @@
          </layout>
         </item>
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Soyad           :    </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="ogr_surname_lineEdit"/>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="topMargin">
            <number>0</number>
@@ -149,7 +176,7 @@
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Telefon        :     </string>
+             <string>Telefon         :    </string>
             </property>
            </widget>
           </item>
@@ -251,7 +278,7 @@
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>Kayıt Tarihi    :   </string>
+             <string>Kayıt Tarihi    :    </string>
             </property>
            </widget>
           </item>
@@ -282,7 +309,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Kayıt Bitiş       :  </string>
+             <string>Kayıt Bitiş       :   </string>
             </property>
            </widget>
           </item>
@@ -493,7 +520,12 @@
         </column>
         <column>
          <property name="text">
-          <string>Ad/Soyad</string>
+          <string>İsim</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Soyad</string>
          </property>
         </column>
         <column>
@@ -529,39 +561,67 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="register_button">
-        <property name="text">
-         <string>Kayıt</string>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <property name="rightMargin">
+         <number>0</number>
         </property>
-       </widget>
+        <item>
+         <widget class="QPushButton" name="register_button">
+          <property name="text">
+           <string>Kayıt</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="delete_button">
+          <property name="text">
+           <string>Sil</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="delete_button">
-        <property name="text">
-         <string>Sil</string>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <property name="rightMargin">
+         <number>0</number>
         </property>
-       </widget>
+        <item>
+         <widget class="QPushButton" name="update_button">
+          <property name="text">
+           <string>Güncelle</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="more_detail_button">
+          <property name="text">
+           <string>Detaylar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="update_button">
-        <property name="text">
-         <string>Güncelle</string>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <property name="rightMargin">
+         <number>0</number>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="search_button">
-        <property name="text">
-         <string>Ara</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="more_detail_button">
-        <property name="text">
-         <string>Detaylar</string>
-        </property>
-       </widget>
+        <item>
+         <widget class="QPushButton" name="search_button">
+          <property name="text">
+           <string>Ara</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="serach_all_pushButton">
+          <property name="text">
+           <string>Tüm Sonuçlar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QPushButton" name="aidat_add_button">

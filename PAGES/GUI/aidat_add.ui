@@ -31,9 +31,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_6"/>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
@@ -77,6 +74,183 @@
         </size>
        </property>
       </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Tarih    :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="ay_cmb_aidat">
+       <item>
+        <property name="text">
+         <string>OCAK</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ŞUBAT</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MART</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NİSAN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MAYIS</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HAZİRAN</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TEMMUZ</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AĞUSTOS</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>EYLÜL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>EKİM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>KASIM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ARALIK</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="yil_cmb_aidat">
+       <item>
+        <property name="text">
+         <string>2022</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2023</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2024</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2025</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2026</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2027</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2028</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2029</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2030</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2031</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2032</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2033</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2034</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2035</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2036</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2037</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2038</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2039</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2040</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </item>
@@ -159,14 +333,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="add_pushButton_2">
+      <widget class="QPushButton" name="add_aidat_button">
        <property name="text">
         <string>Ekle</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="exit_pushButton">
+      <widget class="QPushButton" name="exit_button">
        <property name="text">
         <string>Exit</string>
        </property>

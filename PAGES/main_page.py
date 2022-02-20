@@ -1,3 +1,4 @@
+from wsgiref.simple_server import demo_app
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem 
@@ -11,6 +12,7 @@ from PAGES.connections import main as sqlconnection
 from PAGES.create_table import main as createTable
 import sqlite3 as sql
 import pandas as pd
+from PyQt5.QtCore import pyqtSignal
 class MainPage(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -20,9 +22,9 @@ class MainPage(QMainWindow):
         createTable()
 
         self.btnListeleClick()
+        self.btnListele2Click()
         self.info_page=AppInfoPage()
         self.aidat_add_page=AidatAdd()
-
         self.ui.actionApp_info.triggered.connect(self.open_app_info_page)                    
         self.ui.ogr_export_button.hide()
         self.ui.aidat_export_button.hide()
@@ -34,6 +36,9 @@ class MainPage(QMainWindow):
         self.ui.aidat_export_button.clicked.connect(self.exportToExcelAidat)
         self.ui.aidat_add_button.clicked.connect(self.open_aidat_page)
         self.ui.update_button.clicked.connect(self.btnUpdate)
+        self.ui.search_button.clicked.connect(self.btnAra)
+        self.ui.serach_all_pushButton.clicked.connect(self.btnListeleClick)
+        self.ui.serach_all_pushButton.clicked.connect(self.btnListele2Click)
 
 ##################### SUPPORTS #############################################       
 
@@ -49,7 +54,8 @@ class MainPage(QMainWindow):
 
     def btnTemizle(self):
         self.ui.ogr_tc_edit.clear()
-        self.ui.ogr_name_surname_edit.clear()
+        self.ui.ogr_name_edit.clear()
+        self.ui.ogr_surname_lineEdit.clear()
         self.ui.ogr_number_edit.clear()
         self.ui.register_edit.clear()
         self.ui.register_finish_edit.clear()
@@ -71,13 +77,14 @@ class MainPage(QMainWindow):
 ################################# CRUD OPERATIONS #############################
 
     def btnListeleClick(self): 
+        self.btnTemizle()
         self.ui.ogrenciler_tableWidget.clear()
-        self.ui.ogrenciler_tableWidget.setColumnCount(6)
-        self.ui.ogrenciler_tableWidget.setHorizontalHeaderLabels(('TC','Ad Soyad','Numara','Brans','Kayit','Bitis'))
+        self.ui.ogrenciler_tableWidget.setColumnCount(7)
+        self.ui.ogrenciler_tableWidget.setHorizontalHeaderLabels(('TC','Ad','Soyad','Numara','Brans','Kayit','Bitis'))
         self.ui.ogrenciler_tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         db = sql.connect('./db/mxsoftware.db')
         cur = db.cursor()
-        selectquery = "SELECT * FROM ogrenciler"
+        selectquery = "SELECT tc,isim,soyad,telefon,brans,kayit_tarihi,bitis_tarihi FROM ogrenciler"
         cur.execute(selectquery) 
         rows = cur.fetchall()
         self.ui.ogrenciler_tableWidget.setRowCount(len(rows))
@@ -85,36 +92,58 @@ class MainPage(QMainWindow):
         for satirIndeks, satirVeri in enumerate(rows):
             for sutunIndeks, sutunVeri in enumerate (satirVeri):
                 self.ui.ogrenciler_tableWidget.setItem(satirIndeks,sutunIndeks,QTableWidgetItem(str(sutunVeri))) 
-
+        db.close()
+    def btnListele2Click(self): 
+        self.btnTemizle()
+        self.ui.aidatlar_tableWidget.clear()
+        self.ui.aidatlar_tableWidget.setColumnCount(6)
+        self.ui.aidatlar_tableWidget.setHorizontalHeaderLabels(('TC','Ad','Soyad','Ay','Yıl','Ücret'))
+        self.ui.aidatlar_tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        db = sql.connect('./db/mxsoftware.db')
+        cur = db.cursor()
+        selectquery = "SELECT * FROM aidatlar"
+        cur.execute(selectquery) 
+        rows = cur.fetchall()
+        self.ui.aidatlar_tableWidget.setRowCount(len(rows))
+        
+        for satirIndeks, satirVeri in enumerate(rows):
+            for sutunIndeks, sutunVeri in enumerate (satirVeri):
+                self.ui.aidatlar_tableWidget.setItem(satirIndeks,sutunIndeks,QTableWidgetItem(str(sutunVeri))) 
+        db.close()
     def ListOnClick(self): 
-        self.ui.ogr_tc_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 0).text())
-        self.ui.ogr_name_surname_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 1).text())
-        self.ui.ogr_number_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 2).text())
-        self.ui.brans_combox.setCurrentText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 3).text())
-        self.ui.register_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 4).text())
-        self.ui.register_finish_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 5).text())
+        try:
+            self.ui.ogr_tc_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 0).text())
+            self.ui.ogr_name_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 1).text())
+            self.ui.ogr_surname_lineEdit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 2).text())
+            self.ui.ogr_number_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 3).text())
+            self.ui.brans_combox.setCurrentText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 4).text())
+            self.ui.register_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 5).text())
+            self.ui.register_finish_edit.setText(self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 6).text())
+        except Exception as error:
+            self.ui.statusBar.showMessage("Aradığınız Kişi Bulunamadı....",6000)
         
 
     def btnUpdate(self):
         tc=self.ui.ogr_tc_edit.text()
-        isim_soyad=self.ui.ogr_name_surname_edit.text()
+        isim=self.ui.ogr_name_edit.text().upper()
+        soyad=self.ui.ogr_surname_lineEdit.text().upper()
         numara=self.ui.ogr_number_edit.text()
         brans =self.ui.brans_combox.currentText()
         kayit=self.ui.register_edit.text()
         bitis=self.ui.register_finish_edit.text()
         if(len(tc)!=0):
-            reply = QMessageBox.question(self, student_update_window_header, update_info_window+isim_soyad,
+            reply = QMessageBox.question(self, student_update_window_header, update_info_window+isim,
 			QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if reply == QMessageBox.Yes:
                 try:
                     self.conn = sql.connect("./db/mxsoftware.db")
                     self.c = self.conn.cursor() 
-                    self.c.execute("UPDATE ogrenciler SET  isim_soyad = ?, telefon = ?, \
-                brans = ?, kayit_tarihi = ?, bitis_tarihi = ? WHERE tc = ?",(isim_soyad,numara,brans,kayit,bitis,tc))
+                    self.c.execute("UPDATE ogrenciler SET  isim = ?,soyad = ?, telefon = ?, \
+                brans = ?, kayit_tarihi = ?, bitis_tarihi = ? WHERE tc = ?",(isim,soyad,numara,brans,kayit,bitis,tc))
                     self.conn.commit()
                     self.c.close()
                     self.conn.close()
-                    self.ui.statusBar.showMessage(isim_soyad+update_accept_student,6000)              
+                    self.ui.statusBar.showMessage(isim+update_accept_student,6000)              
                 except Exception:
                     print('Error', could_not_update_student)
                 self.btnListeleClick()
@@ -126,39 +155,70 @@ class MainPage(QMainWindow):
           
     def btnSilClick(self): 
         id = self.ui.ogr_tc_edit.text()
-        isim_soyad= self.ui.ogr_name_surname_edit.text() 
+        isim= self.ui.ogr_name_edit.text() 
         if  len(id)!=0:
-            reply = QMessageBox.question(self, student_delete_window_header, delete_info_window+isim_soyad,
+            reply = QMessageBox.question(self, student_delete_window_header, delete_info_window+isim,
 			QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if reply == QMessageBox.Yes:
                 try:
                     self.conn = sql.connect("./db/mxsoftware.db")
                     self.c = self.conn.cursor() 
                     self.c.execute('DELETE FROM ogrenciler WHERE tc = ?  ', (id,))
+                    self.c.execute('DELETE FROM aidatlar WHERE tc = ?  ', (id,))
                     self.conn.commit()
                     self.c.close()
                     self.conn.close()
-                    self.ui.statusBar.showMessage(isim_soyad+delete_accept_student,6000)              
+                    self.ui.statusBar.showMessage(isim+delete_accept_student,6000)              
                 except Exception:
                     print('Error', could_not_delete_student)
                 self.btnListeleClick()
+                self.btnListele2Click()
                 self.btnTemizle()
             else:
                 self.ui.statusBar.showMessage(cancel_delete_student,5000)
         else:            
             self.ui.statusBar.showMessage(select_student_for_delete,5000)
+    def btnAra(self):
+        aranan1=self.ui.ogr_tc_edit.text()
+        aranan2=self.ui.ogr_name_edit.text().upper()
+        aranan3=self.ui.ogr_surname_lineEdit.text().upper()
+        self.conn = sql.connect("./db/mxsoftware.db")
+        self.c = self.conn.cursor() 
+        self.c.execute("SELECT * FROM ogrenciler WHERE tc=? OR (isim=? AND soyad=?) OR soyad=? ",  \
+                 (aranan1,aranan2,aranan3,aranan3))
+        self.conn.commit()
+        self.ui.ogrenciler_tableWidget.clear()
+        self.ui.ogrenciler_tableWidget.setHorizontalHeaderLabels(('TC','Ad','Soyad','Numara','Brans','Kayit','Bitis'))
+        for satirIndeks, satirVeri in enumerate(self.c):
+            for sutunIndeks, sutunVeri in enumerate (satirVeri):
+                self.ui.ogrenciler_tableWidget.setItem(satirIndeks,sutunIndeks,QTableWidgetItem(str(sutunVeri)))
+        aranan1=self.ui.ogr_tc_edit.text()
+        aranan2=self.ui.ogr_name_edit.text().upper()
+        aranan3=self.ui.ogr_surname_lineEdit.text().upper()
+        self.conn = sql.connect("./db/mxsoftware.db")
+        self.c = self.conn.cursor() 
+        self.c.execute("SELECT * FROM aidatlar WHERE tc=? OR (isim=? AND soyad=?) OR soyad=? ",  \
+                 (aranan1,aranan2,aranan3,aranan3))
+        self.conn.commit()
+        self.ui.aidatlar_tableWidget.clear()
+        self.ui.aidatlar_tableWidget.setHorizontalHeaderLabels(('TC','Ad','Soyad','Ay','Yıl','Ücret'))
+        for satirIndeks, satirVeri in enumerate(self.c):
+            for sutunIndeks, sutunVeri in enumerate (satirVeri):
+                self.ui.aidatlar_tableWidget.setItem(satirIndeks,sutunIndeks,QTableWidgetItem(str(sutunVeri)))
+        self.conn.close()
     def student_add(self):
         tc=self.ui.ogr_tc_edit.text()
-        isim_soyad=self.ui.ogr_name_surname_edit.text()
+        isim=self.ui.ogr_name_edit.text().upper()
+        soyad=self.ui.ogr_surname_lineEdit.text().upper()
         numara=self.ui.ogr_number_edit.text()
         brans =self.ui.brans_combox.currentText()
         kayit=self.ui.register_edit.text()
         bitis=self.ui.register_finish_edit.text()
-        if(len(tc)!=0 and len(isim_soyad)!=0 and len(numara)!=0 and len(bitis)!=0):
+        if(len(tc)!=0 and len(isim)!=0 and len(numara)!=0 and len(bitis)!=0):
             try:
                 self.conn = sql.connect("./db/mxsoftware.db")
                 self.c = self.conn.cursor() 
-                self.c.execute("INSERT INTO ogrenciler VALUES (?,?,?,?,?,?)",(tc,isim_soyad,numara,brans,kayit,bitis))
+                self.c.execute("INSERT INTO ogrenciler VALUES (?,?,?,?,?,?,?)",(tc,isim,soyad,numara,brans,kayit,bitis))
                 self.conn.commit()
                 self.c.close()
                 self.conn.close()
@@ -183,8 +243,8 @@ class MainPage(QMainWindow):
             for row in range(self.ui.ogrenciler_tableWidget.rowCount()):
                 for col in range(self.ui.ogrenciler_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.ogrenciler_tableWidget.item(row, col).text()
-            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
-            df.to_excel(ogrenciler_export_file, index=False)
+            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop/') 
+            df.to_excel(desktop+ogrenciler_export_file, index=False)
             self.ui.statusBar.showMessage(ogrenciler_export_accept_status,9000)
         except Exception as error:
             self.ui.statusBar.showMessage(ogrenciler_export_error_status+str(error),5000)
@@ -197,8 +257,8 @@ class MainPage(QMainWindow):
             for row in range(self.ui.aidatlar_tableWidget.rowCount()):
                 for col in range(self.ui.aidatlar_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.aidatlar_tableWidget.item(row, col).text()
-            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
-            df.to_excel(aidatlar_export_file, index=False)
+            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop/') 
+            df.to_excel(desktop+aidatlar_export_file, index=False)
             self.ui.statusBar.showMessage(aidatlar_export_accept_status,9000)
         except Exception as error:
             self.ui.statusBar.showMessage(aidatlar_export_error_status+str(error),5000)

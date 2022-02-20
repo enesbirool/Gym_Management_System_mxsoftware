@@ -1,4 +1,4 @@
-info_page_comment="Eğer Listede Öğrenci Eklenmemiş ise Programı 1 kez kapatıp açmanız Probleminizi çözecektir... "
+info_page_comment="Eğer Listede Öğrenci Eklenmemiş ise 'RETY' Butonuna 1 kez Tıklamanız Probleminizi çözecektir... "
 close_window_event_commment='Çıkmak İstediğine Emin misin?'
 close_window_cancel="Çıkış İptal Edildi..."
 close_window_header='Çıkış Penceresi...'

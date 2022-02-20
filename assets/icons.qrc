@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>info.png</file>
     <file>user.png</file>
     <file>martialarts_g.png</file>
   </qresource>

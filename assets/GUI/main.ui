@@ -610,7 +610,7 @@
         <item>
          <widget class="QPushButton" name="search_button">
           <property name="text">
-           <string>Ara</string>
+           <string>Öğrenci Ara</string>
           </property>
          </widget>
         </item>
@@ -624,11 +624,18 @@
        </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="aidat_add_button">
-        <property name="text">
-         <string>Aidat Ekle</string>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="rightMargin">
+         <number>0</number>
         </property>
-       </widget>
+        <item>
+         <widget class="QPushButton" name="aidat_add_button">
+          <property name="text">
+           <string>Aidat Ekle</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <spacer name="horizontalSpacer_7">
@@ -943,7 +950,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Copyright © MXSoftware 2021 Tüm Hakları Saklıdır. Coded By Enes Birol</string>
+         <string>Copyright © MXSoftware 2022 Tüm Hakları Saklıdır. Coded By Enes Birol</string>
         </property>
        </widget>
       </item>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:/project/app_info.ui'
+# Form implementation generated from reading ui file 'D:/project/PAGES/GUI/app_info.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -52,6 +52,6 @@ class Ui_Form(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">4. YAZILIM, çok kullanıcılı kullanılıyor ise; SON KULLANICI, çalıştırılabilecek maksimum programı lisans alırken belirtilen, client sayısı kadar diğer bilgisayarlara kurma hakkına haizdir. </span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">5. SON KULLANICI, demo sürümünü, MXSoftware\'un belirlediği kayıt adedi ve süresince kullanacağını, her ne sebeple olursa olsun, ticari veya mesleki amaçlarla veya diğer kar getirici sebeplerle kullanmayacağını kabul, taahhüt ve beyan eder.</span></p></body></html>"))
-        self.label.setText(_translate("Form", "copyright © MXSoftware 2021 tüm hakları saklıdır"))
+        self.label.setText(_translate("Form", "copyright © MXSoftware 2022 tüm hakları saklıdır"))
 
-import icons_rc
+import assets.py_rc.icons_rc as icons_rc

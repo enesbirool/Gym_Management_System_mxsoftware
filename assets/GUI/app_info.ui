@@ -14,7 +14,7 @@
    <string>Lisans Sözleşmesi</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="assets/icons.qrc">
+   <iconset resource="../../assets/icons.qrc">
     <normaloff>:/assets/martialarts_g.png</normaloff>:/assets/martialarts_g.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -49,14 +49,14 @@ p, li { white-space: pre-wrap; }
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>copyright © MXSoftware 2021 tüm hakları saklıdır</string>
+      <string>copyright © MXSoftware 2022 tüm hakları saklıdır</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="assets/icons.qrc"/>
+  <include location="../../assets/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

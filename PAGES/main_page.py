@@ -7,24 +7,24 @@ from PAGES.app_info import AppInfoPage
 from PAGES.aidat_add import AidatAdd
 from PyQt5.QtWidgets import QMessageBox
 from assets.comments import *
-import os
 from PAGES.connections import main as sqlconnection
 from PAGES.create_table import main as createTable
 import sqlite3 as sql
 import pandas as pd
-from PyQt5.QtCore import pyqtSignal
+
 class MainPage(QMainWindow):
     def __init__(self):
+
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         sqlconnection()
         createTable()
-
         self.btnListeleClick()
         self.btnListele2Click()
         self.info_page=AppInfoPage()
         self.aidat_add_page=AidatAdd()
+        
         self.ui.actionApp_info.triggered.connect(self.open_app_info_page)                    
         self.ui.ogr_export_button.hide()
         self.ui.aidat_export_button.hide()
@@ -72,6 +72,7 @@ class MainPage(QMainWindow):
         self.info_page.show()
     def open_aidat_page(self):
         self.aidat_add_page.show()
+        self.aidat_add_page.combo_ekle()
 
 
 ################################# CRUD OPERATIONS #############################
@@ -101,7 +102,7 @@ class MainPage(QMainWindow):
         self.ui.aidatlar_tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         db = sql.connect('./db/mxsoftware.db')
         cur = db.cursor()
-        selectquery = "SELECT * FROM aidatlar"
+        selectquery = "SELECT * FROM aidatlar "
         cur.execute(selectquery) 
         rows = cur.fetchall()
         self.ui.aidatlar_tableWidget.setRowCount(len(rows))

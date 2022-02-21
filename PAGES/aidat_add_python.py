@@ -158,4 +158,4 @@ class Ui_Form(object):
         self.add_aidat_button.setText(_translate("Form", "Ekle"))
         self.exit_button.setText(_translate("Form", "Exit"))
 
-import icons_rc
+import assets.py_rc.icons_rc as icons_rc

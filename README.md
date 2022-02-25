@@ -27,12 +27,12 @@
         <img src="./photos/1.png"></img>
         <img src="./photos/2.png"></img>
         <img src="./photos/3.png"></img>
-        <img src="./photos/4.png"></img>
-        <img src="./photos/5.png"></img>
-        <img src="./photos/6.png"></img>
-        <img src="./photos/7.png"></img>
-        <img src="./photos/8.png"></img>
-        <img src="./photos/9.png"></img>
+        <img src="./photos/4.jpg"></img>
+        <img src="./photos/5.jpg"></img>
+        <img src="./photos/6.jpg"></img>
+        <img src="./photos/7.jpg"></img>
+        <img src="./photos/8.jpg"></img>
+        <img src="./photos/9.jpg"></img>
     </details>
     
 <ul>

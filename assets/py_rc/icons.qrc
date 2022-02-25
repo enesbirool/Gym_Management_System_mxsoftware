@@ -1,12 +1,13 @@
 <RCC>
   <qresource prefix="assets">
-    <file>user2.png</file>
     <file>contrasena.png</file>
-    <file>login.png</file>
-    <file>password.png</file>
-    <file>user_profile.png</file>
     <file>info.png</file>
-    <file>user.png</file>
+    <file>login.png</file>
+    <file>martialarts_g.ico</file>
     <file>martialarts_g.png</file>
+    <file>password.png</file>
+    <file>user.png</file>
+    <file>user_profile.png</file>
+    <file>user2.png</file>
   </qresource>
 </RCC>

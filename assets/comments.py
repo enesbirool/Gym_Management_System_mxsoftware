@@ -41,3 +41,7 @@ cancel_update_student="Güncellemeden Vazgeçildi..."
 could_not_update_student="Databaseden Öğrenci Güncellenemedi..."
 update_accept_student=" Başarıyla Güncellendi..."
 update_info_window="Öğrenciyi Güncellemek İstediğine Emin misin? "
+
+################### Student Detail #############################
+
+select_student_for_detail="Öğrenci Bilgileri için lütfen bir öğrenci seçiniz...."

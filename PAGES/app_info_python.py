@@ -54,4 +54,3 @@ class Ui_Form(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">5. SON KULLANICI, demo sürümünü, MXSoftware\'un belirlediği kayıt adedi ve süresince kullanacağını, her ne sebeple olursa olsun, ticari veya mesleki amaçlarla veya diğer kar getirici sebeplerle kullanmayacağını kabul, taahhüt ve beyan eder.</span></p></body></html>"))
         self.label.setText(_translate("Form", "copyright © MXSoftware 2022 tüm hakları saklıdır"))
 
-import assets.py_rc.icons_rc as icons_rc

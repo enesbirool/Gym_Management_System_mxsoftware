@@ -1,18 +1,16 @@
-from fileinput import close
 from PyQt5.QtWidgets import *
 from PAGES.aidat_add_python import Ui_Form
 import sqlite3 as sql
-from PyQt5 import QtCore
 from assets.comments import *
 
 class AidatAdd(QWidget):
     def __init__(self):
-        
+
         super().__init__()
         self.isimler=[]
+
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.combo_ekle()
         self.ui.pushButton.clicked.connect(self.open_info)
         self.ui.add_aidat_button.clicked.connect(self.add_aidat)
         self.ui.exit_button.clicked.connect(lambda x:self.close())
@@ -33,6 +31,8 @@ class AidatAdd(QWidget):
         selectquery = "SELECT * FROM ogrenciler"
         cur.execute(selectquery)
         rows=cur.fetchall()
+        self.ui.aidat_comboBox.clear()
+        self.isimler.clear()
         for isim in rows:
             self.isimler.append(str(isim[1]+" "+isim[2]))
         self.ui.aidat_comboBox.addItems(self.isimler)

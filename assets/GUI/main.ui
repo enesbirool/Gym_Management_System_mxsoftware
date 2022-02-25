@@ -43,7 +43,7 @@
    <string>Sporcu Kayıt ve Aidat Programı</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../assets/icons.qrc">
+   <iconset resource="../py_rc/icons.qrc">
     <normaloff>:/assets/martialarts_g.png</normaloff>:/assets/martialarts_g.png</iconset>
   </property>
   <property name="styleSheet">
@@ -1010,7 +1010,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../../assets/icons.qrc"/>
+  <include location="../py_rc/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

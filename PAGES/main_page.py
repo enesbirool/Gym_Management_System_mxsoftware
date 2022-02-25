@@ -321,8 +321,6 @@ ORDER BY
 
     def exportToExcelOgr(self):
         try:
-            pd.set_option('display.max_colwidth', 1000)
-
             columnHeaders = []
             for j in range(self.ui.ogrenciler_tableWidget.model().columnCount()):
                 columnHeaders.append(self.ui.ogrenciler_tableWidget.horizontalHeaderItem(j).text())
@@ -331,10 +329,9 @@ ORDER BY
                 for col in range(self.ui.ogrenciler_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.ogrenciler_tableWidget.item(row, col).text()
             desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop/')
-            df.to_excel(desktop + ogrenciler_export_file, index=False,sheet_name='MXSoftware')
+            df.to_excel(desktop + ogrenciler_export_file, index=False)
             self.ui.statusBar.showMessage(ogrenciler_export_accept_status, 9000)
         except Exception as error:
-            pd.set_option('display.max_colwidth', 1000)
             columnHeaders = []
             for j in range(self.ui.ogrenciler_tableWidget.model().columnCount()):
                 columnHeaders.append(self.ui.ogrenciler_tableWidget.horizontalHeaderItem(j).text())
@@ -342,7 +339,7 @@ ORDER BY
             for row in range(self.ui.ogrenciler_tableWidget.rowCount()):
                 for col in range(self.ui.ogrenciler_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.ogrenciler_tableWidget.item(row, col).text()
-            df.to_excel(ogrenciler_export_file, index=False,sheet_name='MXSoftware')
+            df.to_excel(ogrenciler_export_file, index=False)
             ProjectFolder = os.getcwd() + "/" + ogrenciler_export_file
             reply = QMessageBox.question(self, close_window_header, "Open a Tıklayarak Excel Çıktısını Görebilirsiniz",
                                          QMessageBox.Close | QMessageBox.Open)
@@ -352,7 +349,6 @@ ORDER BY
                 self.ui.statusBar.showMessage("İptal Edildi", 5000)
     def exportToExcelAidat(self):
         try:
-            pd.set_option('display.max_colwidth', 1000)
             columnHeaders = []
             for j in range(self.ui.aidatlar_tableWidget.model().columnCount()):
                 columnHeaders.append(self.ui.aidatlar_tableWidget.horizontalHeaderItem(j).text())
@@ -361,10 +357,9 @@ ORDER BY
                 for col in range(self.ui.aidatlar_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.aidatlar_tableWidget.item(row, col).text()
             desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop/')
-            df.to_excel(desktop + aidatlar_export_file, index=False,sheet_name='MXSoftware')
+            df.to_excel(desktop + aidatlar_export_file, index=False)
             self.ui.statusBar.showMessage(aidatlar_export_accept_status, 9000)
         except Exception as error:
-            pd.set_option('display.max_colwidth', 1000)
             columnHeaders = []
             for j in range(self.ui.aidatlar_tableWidget.model().columnCount()):
                 columnHeaders.append(self.ui.aidatlar_tableWidget.horizontalHeaderItem(j).text())
@@ -373,7 +368,7 @@ ORDER BY
                 for col in range(self.ui.aidatlar_tableWidget.columnCount()):
                     df.at[row, columnHeaders[col]] = self.ui.aidatlar_tableWidget.item(row, col).text()
 
-            df.to_excel(aidatlar_export_file, index=False,sheet_name='MXSoftware')
+            df.to_excel(aidatlar_export_file, index=False)
 
             ProjectFolder=os.getcwd()+"/"+aidatlar_export_file
             reply = QMessageBox.question(self, close_window_header, "Open a Tıklayarak Excel Çıktısını Görebilirsiniz",

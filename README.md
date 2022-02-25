@@ -24,12 +24,15 @@
     <hr />
     <details>
       <summary>Project Details</summary>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/1.png"></img>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/2.png"></img>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/3.png"></img>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/4.png"></img>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/5.png"></img>
-        <img src="https://github.com/mXBozkurt/Gym_Management_System_mxsoftware/blob/master/photos/6.png"></img>
+        <img src="./photos/1.png"></img>
+        <img src="./photos/2.png"></img>
+        <img src="./photos/3.png"></img>
+        <img src="./photos/4.png"></img>
+        <img src="./photos/5.png"></img>
+        <img src="./photos/6.png"></img>
+        <img src="./photos/7.png"></img>
+        <img src="./photos/8.png"></img>
+        <img src="./photos/9.png"></img>
     </details>
     
 <ul>

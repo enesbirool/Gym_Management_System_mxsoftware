@@ -1,7 +1,7 @@
 import os
 import sqlite3 as sql
 import pandas as pd
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
@@ -77,6 +77,8 @@ class MainPage(QMainWindow):
         self.info_page.show()
     def get_details(self):
         try:
+            pixmap = QtGui.QPixmap()
+
             tc=self.ui.ogr_tc_edit.text()
             self.conn = sql.connect("./db/mxsoftware.db")
             self.c = self.conn.cursor()
@@ -84,9 +86,13 @@ class MainPage(QMainWindow):
                            (tc, tc, tc, tc))
             self.conn.commit()
             for i in self.c:
+                print(i)
                 self.profile_page.ui.veli_name_edit.setText(i[3])
                 self.profile_page.ui.date_of_birth_edit.setText(i[1])
                 self.profile_page.ui.kusak_edit.setText(i[2])
+                pixmap.loadFromData(i[6], 'png')
+                self.profile_page.ui.photo_label.clear()
+                self.profile_page.ui.photo_label.setPixmap(pixmap)
                 self.profile_page.ui.veli_phone_edit.setText(i[4])
                 self.profile_page.ui.lisans_no_edit.setText(i[5])
                 self.profile_page.ui.hes_code_edit.setText(i[7])

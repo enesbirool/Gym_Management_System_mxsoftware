@@ -1,3 +1,4 @@
+from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PAGES.profile_python import Ui_Form
 import sqlite3 as sql
@@ -10,6 +11,50 @@ class ProfilePage(QWidget):
         self.ui.setupUi(self)
         self.ui.exit_butotn.clicked.connect(self.pencere_kapat)
         self.ui.update_pushButton.clicked.connect(self.details_update)
+        self.ui.pick_photo_button.clicked.connect(self.browse_photo)
+
+
+    def conver_image_into_binary(self,filename):
+        with open(filename, 'rb') as file:
+            photo_image = file.read()
+        return photo_image
+    def pp_update(self):
+        pixmap = QtGui.QPixmap()
+        tc = self.ui.tc_edit.text()
+        self.conn = sql.connect("./db/mxsoftware.db")
+        self.c = self.conn.cursor()
+        self.c.execute("SELECT * FROM details WHERE tc=? OR (tc=? AND tc=?) OR tc=? ",
+                       (tc, tc, tc, tc))
+        self.conn.commit()
+        for i in self.c:
+            pixmap.loadFromData(i[6], 'png')
+            self.ui.photo_label.clear()
+            self.ui.photo_label.setPixmap(pixmap)
+    def browse_photo(self):
+        try:
+            tc=self.ui.tc_edit.text()
+            binary=""
+            self.fname=QFileDialog.getOpenFileName(self, 'Open file', 'D:/')
+            print(self.fname[0])
+            with open(self.fname[0], 'rb') as file:
+                photo_image = file.read()
+                binary=photo_image
+            print(binary)
+            self.conn = sql.connect("./db/mxsoftware.db")
+            self.c = self.conn.cursor()
+            self.c.execute("UPDATE details SET  photo = ? WHERE tc = ?",
+                           (binary, tc))
+            self.conn.commit()
+            self.conn.close()
+            print("Eklendi")
+            self.pp_update()
+
+
+            binary=""
+        except Exception:
+            print("arıza")
+
+
     def pencere_kapat(self):
         self.close()
     def details_update(self):
@@ -27,7 +72,8 @@ class ProfilePage(QWidget):
         hes = self.ui.hes_code_edit.text()
         kusak = self.ui.kusak_edit.text()
         mail = self.ui.mail_edit.text()
-        photo = "null"
+        photo = ""
+
 
         try:
             self.conn = sql.connect("./db/mxsoftware.db")
@@ -36,9 +82,8 @@ class ProfilePage(QWidget):
             brans = ?, kayit_tarihi = ?, bitis_tarihi = ? WHERE tc = ?",
                                (isim, soyad, numara, brans, kayit, bitis, tc))
             self.conn.commit()
-            self.c.execute("UPDATE details SET  veli_name = ?,veli_number = ?, lisans_no = ?, \
-                        photo = ?, hes_code = ?, mail = ?,belt_color=?,date_of_birth=? WHERE tc = ?",
-                           (veli_adi, veli_numara, lisans, photo, hes, mail,kusak,dogum_tarihi, tc))
+            self.c.execute("UPDATE details SET  veli_name = ?,veli_number = ?, lisans_no = ?, hes_code = ?, mail = ?,belt_color=?,date_of_birth=? WHERE tc = ?",
+                           (veli_adi, veli_numara, lisans, hes, mail,kusak,dogum_tarihi, tc))
             self.conn.commit()
             self.c.close()
             self.conn.close()

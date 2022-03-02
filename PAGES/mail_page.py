@@ -66,15 +66,16 @@ class MailPage(QWidget):
             basarili=0
             basarisiz=0
             konu=self.ui.konu_basligi_lineEdit.text()
+            message=self.ui.message_textEdit.toPlainText()
             yag=yagmail.SMTP(self.kullanici_mail,self.kullanici_sifre)
             mail_metni="""
             Merhaba ,
             
-            bu bir deneme mailidir
+            {}
             
             
             MXSoftware Uygulaması tarafından toplu mail olarak gönderilmiştir...            
-            """
+            """.format(message)
             mail_konusu="{}".format(konu)
             QMessageBox.question(self, 'İnfo Page', "Mail Gönderimi Başladı lütfen birkaç saniye keyfinize bakın... \n İşlem Sonunda Bildirileceksiniz...",
                                  QMessageBox.Ok)
@@ -91,6 +92,8 @@ class MailPage(QWidget):
             yag.close()
             QMessageBox.question(self, 'İnfo Page', "Mail Gönderimi Tamamlandı {} Başarılı , {} Başarısız...".format(basarili,basarisiz),
                                  QMessageBox.Ok)
+            self.ui.message_textEdit.clear()
+            self.ui.konu_basligi_lineEdit.clear()
             basarisiz=0
             basarili=0
         else:

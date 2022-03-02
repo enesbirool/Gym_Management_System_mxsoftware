@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>542</height>
+    <height>539</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -283,9 +283,12 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="register_edit">
-            <property name="placeholderText">
-             <string>01/01/2022</string>
+           <widget class="QDateEdit" name="register_dateEdit">
+            <property name="displayFormat">
+             <string>dd/MM/yyyy</string>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -314,9 +317,12 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="register_finish_edit">
-            <property name="placeholderText">
-             <string>01/01/2022</string>
+           <widget class="QDateEdit" name="register_finish_dateEdit">
+            <property name="displayFormat">
+             <string>dd/MM/yyyy</string>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -984,8 +990,19 @@
     <property name="title">
      <string>Menu</string>
     </property>
+    <widget class="QMenu" name="menuSettings">
+     <property name="title">
+      <string>Ayarlar</string>
+     </property>
+     <addaction name="actionToplu_Mail_G_nder"/>
+     <addaction name="actionBilgi_Boloncuklar_2"/>
+     <addaction name="actionSave_Database"/>
+     <addaction name="actionLoad_Database_2"/>
+    </widget>
     <addaction name="actionExport_Data"/>
-    <addaction name="actionApp_info"/>
+    <addaction name="menuSettings"/>
+    <addaction name="actionlicence_sozlesme"/>
+    <addaction name="actionApp_nfo"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -1000,12 +1017,58 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Export Data</string>
+    <string>Excel Çıktısı Al</string>
    </property>
   </action>
-  <action name="actionApp_info">
+  <action name="actionlicence_sozlesme">
    <property name="text">
-    <string>App İnfo</string>
+    <string>Lisans Sözleşmesi</string>
+   </property>
+  </action>
+  <action name="export_to_database_action">
+   <property name="text">
+    <string>Save Database</string>
+   </property>
+  </action>
+  <action name="actionBilgi_Boloncuklar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bilgi Boloncukları</string>
+   </property>
+  </action>
+  <action name="actionLoad_Database">
+   <property name="text">
+    <string>Load Database</string>
+   </property>
+  </action>
+  <action name="actionSave_Database">
+   <property name="text">
+    <string>Save Database</string>
+   </property>
+  </action>
+  <action name="actionLoad_Database_2">
+   <property name="text">
+    <string>Load Database</string>
+   </property>
+  </action>
+  <action name="actionBilgi_Boloncuklar_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bilgi Boloncukları</string>
+   </property>
+  </action>
+  <action name="actionApp_nfo">
+   <property name="text">
+    <string>Uygulama Hakkında</string>
+   </property>
+  </action>
+  <action name="actionToplu_Mail_G_nder">
+   <property name="text">
+    <string>Toplu Mail Gönder</string>
    </property>
   </action>
  </widget>

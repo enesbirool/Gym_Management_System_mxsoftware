@@ -428,13 +428,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="exit_butotn">
-         <property name="text">
-          <string>Çıkış</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
     </layout>

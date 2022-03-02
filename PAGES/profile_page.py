@@ -9,7 +9,6 @@ class ProfilePage(QWidget):
         super().__init__()
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.ui.exit_butotn.clicked.connect(self.pencere_kapat)
         self.ui.update_pushButton.clicked.connect(self.details_update)
         self.ui.pick_photo_button.clicked.connect(self.browse_photo)
 
@@ -34,19 +33,16 @@ class ProfilePage(QWidget):
         try:
             tc=self.ui.tc_edit.text()
             binary=""
-            self.fname=QFileDialog.getOpenFileName(self, 'Open file', 'D:/')
-            print(self.fname[0])
+            self.fname=QFileDialog.getOpenFileName(self, 'Open file', 'D:/',"Select Photo (*.png *.jpg *.PNG *.JPG)")
             with open(self.fname[0], 'rb') as file:
                 photo_image = file.read()
                 binary=photo_image
-            print(binary)
             self.conn = sql.connect("./db/mxsoftware.db")
             self.c = self.conn.cursor()
             self.c.execute("UPDATE details SET  photo = ? WHERE tc = ?",
                            (binary, tc))
             self.conn.commit()
             self.conn.close()
-            print("Eklendi")
             self.pp_update()
 
 
@@ -54,9 +50,6 @@ class ProfilePage(QWidget):
         except Exception:
             print("arıza")
 
-
-    def pencere_kapat(self):
-        self.close()
     def details_update(self):
         tc=self.ui.tc_edit.text()
         isim = self.ui.isim_edit.text().upper()
@@ -92,3 +85,28 @@ class ProfilePage(QWidget):
             print('Error', could_not_update_student)
     def detail_updated(self):
         QMessageBox.question(self, 'İnfo Page', "Güncellendi",QMessageBox.Ok)
+    def detail_ui_clear(self):
+        self.ui.tc_edit.clear()
+        self.ui.isim_edit.clear()
+        self.ui.soyad_edit.clear()
+        self.ui.phone_edit.clear()
+        self.ui.register_edit.clear()
+        self.ui.register_finish_edit.clear()
+        self.ui.veli_name_edit.clear()
+        self.ui.veli_phone_edit.clear()
+        self.ui.lisans_no_edit.clear()
+        self.ui.photo_label.clear()
+        self.ui.date_of_birth_edit.clear()
+        self.ui.hes_code_edit.clear()
+        self.ui.kusak_edit.clear()
+        self.ui.mail_edit.clear()
+        self.ui.veli_name_edit.clear()
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, close_window_header, close_window_event_commment,
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+            self.detail_ui_clear()

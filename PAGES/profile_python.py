@@ -199,9 +199,6 @@ class Ui_Form(object):
         self.update_pushButton = QtWidgets.QPushButton(Form)
         self.update_pushButton.setObjectName("update_pushButton")
         self.horizontalLayout_15.addWidget(self.update_pushButton)
-        self.exit_butotn = QtWidgets.QPushButton(Form)
-        self.exit_butotn.setObjectName("exit_butotn")
-        self.horizontalLayout_15.addWidget(self.exit_butotn)
         self.verticalLayout_2.addLayout(self.horizontalLayout_15)
         self.horizontalLayout_16.addLayout(self.verticalLayout_2)
 
@@ -232,6 +229,5 @@ class Ui_Form(object):
         self.label_8.setText(_translate("Form", "Kuşak : "))
         self.label_13.setText(_translate("Form", "Mail Adresi:"))
         self.update_pushButton.setText(_translate("Form", "Güncelle"))
-        self.exit_butotn.setText(_translate("Form", "Çıkış"))
 
 import assets.py_rc.icons_rc as icons_rc

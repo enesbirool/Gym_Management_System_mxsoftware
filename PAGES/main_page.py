@@ -1,50 +1,73 @@
 import os
+import shutil
 import sqlite3 as sql
+import datetime
 import pandas as pd
-from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtGui
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import QDate
+from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
-from PAGES.profile_page import ProfilePage
+from PAGES.mail_page import MailPage
 from PAGES.aidat_add import AidatAdd
 from PAGES.app_info import AppInfoPage
 from PAGES.connections import main as sqlconnection
 from PAGES.create_table import main as createTable
 from PAGES.main_python import Ui_MainWindow
+from PAGES.profile_page import ProfilePage
 from assets.comments import *
 
 
 class MainPage(QMainWindow):
     def __init__(self):
-
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         sqlconnection()
         createTable()
-
         self.btnListeleClick()
         self.btnListele2Click()
         self.info_page = AppInfoPage()
         self.aidat_add_page = AidatAdd()
         self.profile_page = ProfilePage()
-        self.ui.actionApp_info.triggered.connect(self.open_app_info_page)
+        self.mail_page=MailPage()
+
+        self.ui.actionlicence_sozlesme.triggered.connect(self.open_app_info_page)       
         self.ui.ogr_export_button.hide()
         self.ui.aidat_export_button.hide()
-        self.ui.actionExport_Data.toggled[bool].connect(self.btnstate)
-        self.ui.register_button.clicked.connect(self.student_add)
-        self.ui.delete_button.clicked.connect(self.btnSilClick)
+        self.ui.actionExport_Data.toggled[bool].connect(self.btnstate)    
+        self.ui.actionBilgi_Boloncuklar_2.toggled[bool].connect(self.BoloncukState)
+
         self.ui.ogrenciler_tableWidget.itemSelectionChanged.connect(self.ListOnClick)
         self.ui.ogr_export_button.clicked.connect(self.exportToExcelOgr)
-        self.ui.aidat_export_button.clicked.connect(self.exportToExcelAidat)
-        self.ui.aidat_add_button.clicked.connect(self.open_aidat_page)
-        self.ui.update_button.clicked.connect(self.btnUpdate)
-        self.ui.search_button.clicked.connect(self.btnAra)
+
+        self.ui.aidat_export_button.clicked.connect(self.exportToExcelAidat)  
+        self.ui.register_button.clicked.connect(self.student_add)
+        self.ui.more_detail_button.clicked.connect(self.open_detail)
         self.ui.serach_all_pushButton.clicked.connect(self.btnListeleClick)
         self.ui.serach_all_pushButton.clicked.connect(self.btnListele2Click)
-        self.ui.more_detail_button.clicked.connect(self.open_detail)
+        self.ui.search_button.clicked.connect(self.btnAra)
+        self.ui.update_button.clicked.connect(self.btnUpdate)
+        self.ui.aidat_add_button.clicked.connect(self.open_aidat_page)
+        self.ui.delete_button.clicked.connect(self.btnSilClick)
+        self.ui.actionSave_Database.triggered.connect(self.export_data)
+        self.ui.actionLoad_Database_2.triggered.connect(self.load_database)
+        self.ui.actionToplu_Mail_G_nder.triggered.connect(self.open_mail_page)
+        
 
     ##################### SUPPORTS #############################################
+    def open_mail_page(self):
+        self.mail_page.show()
+    def bilgi_boloncuklari(self):
+
+        self.ui.more_detail_button.setToolTip("Öğrenciler Hakkında Ayrıntılı Bilgi Penceresi Açar...")
+        self.ui.serach_all_pushButton.setToolTip("Liste yenileme veya bütün bilgileri getirir...")
+        self.ui.search_button.setToolTip("Öğrenci Aramanızı sağlar...")
+        self.ui.update_button.setToolTip("Öğrenci Güncellemenizi sağlar...")
+        self.ui.aidat_add_button.setToolTip("Öğrenci Aidat Eklemenizi sağlar...")
+        self.ui.delete_button.setToolTip("Öğrenci Silmenizi sağlar...")
+        self.ui.register_button.setToolTip("Öğrenci Eklemenizi sağlar...")
 
     def btnstate(self, state):
         if (state == True):
@@ -55,14 +78,26 @@ class MainPage(QMainWindow):
             self.ui.ogr_export_button.hide()
             self.ui.aidat_export_button.hide()
             self.ui.statusBar.showMessage(export_buttons_hide, 5000)
-
+    def BoloncukState(self,state):
+        if (state == True):
+            self.bilgi_boloncuklari()
+            self.ui.statusBar.showMessage("Bilgi Boloncukları Açıldı", 5000)
+        else:
+            self.ui.statusBar.showMessage("Bilgi Boloncukları Kapatıldı", 5000)
+            self.ui.more_detail_button.setToolTip("")
+            self.ui.serach_all_pushButton.setToolTip("")
+            self.ui.search_button.setToolTip("")
+            self.ui.update_button.setToolTip("")
+            self.ui.aidat_add_button.setToolTip("")
+            self.ui.delete_button.setToolTip("")
+            self.ui.register_button.setToolTip("")
     def btnTemizle(self):
         self.ui.ogr_tc_edit.clear()
         self.ui.ogr_name_edit.clear()
         self.ui.ogr_surname_lineEdit.clear()
         self.ui.ogr_number_edit.clear()
-        self.ui.register_edit.clear()
-        self.ui.register_finish_edit.clear()
+        self.ui.register_dateEdit.setDate(datetime.date.today())
+        self.ui.register_finish_dateEdit.setDate(datetime.date.today())
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, close_window_header, close_window_event_commment,
@@ -75,7 +110,24 @@ class MainPage(QMainWindow):
 
     def open_app_info_page(self):
         self.info_page.show()
+    def detail_ui_clear(self):
+        self.profile_page.ui.tc_edit.clear()
+        self.profile_page.ui.isim_edit.clear()
+        self.profile_page.ui.soyad_edit.clear()
+        self.profile_page.ui.phone_edit.clear()
+        self.profile_page.ui.register_edit.clear()
+        self.profile_page.ui.register_finish_edit.clear()
+        self.profile_page.ui.veli_name_edit.clear()
+        self.profile_page.ui.veli_phone_edit.clear()
+        self.profile_page.ui.lisans_no_edit.clear()
+        self.profile_page.ui.photo_label.clear()
+        self.profile_page.ui.date_of_birth_edit.clear()
+        self.profile_page.ui.hes_code_edit.clear()
+        self.profile_page.ui.kusak_edit.clear()
+        self.profile_page.ui.mail_edit.clear()
+        self.profile_page.ui.veli_name_edit.clear()
     def get_details(self):
+
         try:
             pixmap = QtGui.QPixmap()
 
@@ -86,31 +138,44 @@ class MainPage(QMainWindow):
                            (tc, tc, tc, tc))
             self.conn.commit()
             for i in self.c:
-                print(i)
                 self.profile_page.ui.veli_name_edit.setText(i[3])
                 self.profile_page.ui.date_of_birth_edit.setText(i[1])
                 self.profile_page.ui.kusak_edit.setText(i[2])
-                pixmap.loadFromData(i[6], 'png')
-                self.profile_page.ui.photo_label.clear()
-                self.profile_page.ui.photo_label.setPixmap(pixmap)
                 self.profile_page.ui.veli_phone_edit.setText(i[4])
                 self.profile_page.ui.lisans_no_edit.setText(i[5])
                 self.profile_page.ui.hes_code_edit.setText(i[7])
                 self.profile_page.ui.mail_edit.setText(i[8])
-
+                pixmap.loadFromData(i[6], 'png')
+                self.profile_page.ui.photo_label.clear()
+                self.profile_page.ui.photo_label.setPixmap(pixmap)
         except Exception :
-            self.ui.statusBar.showMessage("Detaylar bulunamadı")
+            print("Hata")
     def open_detail(self):
+        self.profile_page.detail_ui_clear()
         tc = self.ui.ogr_tc_edit.text()
         isim = self.ui.ogr_name_edit.text().upper()
         soyad = self.ui.ogr_surname_lineEdit.text().upper()
         numara = self.ui.ogr_number_edit.text()
         brans = self.ui.brans_combox.currentText()
-        kayit = self.ui.register_edit.text()
-        bitis = self.ui.register_finish_edit.text()
-        self.get_details()
+        kayit = self.ui.register_dateEdit.text()
+        bitis = self.ui.register_finish_dateEdit.text()
         if len(tc) != 0:
             self.profile_page.show()
+            self.profile_page.ui.tc_edit.clear()
+            self.profile_page.ui.isim_edit.clear()
+            self.profile_page.ui.soyad_edit.clear()
+            self.profile_page.ui.phone_edit.clear()
+            self.profile_page.ui.register_edit.clear()
+            self.profile_page.ui.register_finish_edit.clear()
+            self.profile_page.ui.veli_name_edit.clear()
+            self.profile_page.ui.veli_phone_edit.clear()
+            self.profile_page.ui.lisans_no_edit.clear()
+            self.profile_page.ui.photo_label.clear()
+            self.profile_page.ui.date_of_birth_edit.clear()
+            self.profile_page.ui.hes_code_edit.clear()
+            self.profile_page.ui.kusak_edit.clear()
+            self.profile_page.ui.mail_edit.clear()
+            self.profile_page.ui.veli_name_edit.clear()
             self.profile_page.ui.tc_edit.setText(tc)
             self.profile_page.ui.isim_edit.setText(isim)
             self.profile_page.ui.soyad_edit.setText(soyad)
@@ -118,6 +183,7 @@ class MainPage(QMainWindow):
             self.profile_page.ui.brans_comboBox.setCurrentText(brans)
             self.profile_page.ui.register_edit.setText(kayit)
             self.profile_page.ui.register_finish_edit.setText(bitis)
+            self.get_details()
 
         else:
             self.ui.statusBar.showMessage(select_student_for_detail, 5000)
@@ -132,8 +198,12 @@ class MainPage(QMainWindow):
 
     def btnListeleClick(self):
         self.btnTemizle()
+        self.ui.register_dateEdit.setDate(QDate(2020, 6, 10))
+        self.ui.register_finish_dateEdit.setDate(QDate(2020, 6, 10))
         self.ui.ogrenciler_tableWidget.clear()
         self.ui.ogrenciler_tableWidget.setColumnCount(7)
+        self.ui.register_dateEdit.setDate(datetime.date.today())
+        self.ui.register_finish_dateEdit.setDate(datetime.date.today())
         self.ui.ogrenciler_tableWidget.setHorizontalHeaderLabels(
             ('TC', 'Ad', 'Soyad', 'Numara', 'Brans', 'Kayit', 'Bitis'))
         self.ui.ogrenciler_tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
@@ -197,10 +267,21 @@ ORDER BY
                 self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 3).text())
             self.ui.brans_combox.setCurrentText(
                 self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 4).text())
-            self.ui.register_edit.setText(
-                self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 5).text())
-            self.ui.register_finish_edit.setText(
-                self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 6).text())
+            register_date=self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 5).text()
+            register_date.split(".")
+            gun=register_date[0]+register_date[1]
+            ay=register_date[3]+register_date[4]
+            yil=register_date[6]+register_date[7]+register_date[8]+register_date[9]
+            d = QDate(int(yil), int(ay), int(gun))
+            self.ui.register_dateEdit.setDate(d)
+
+            register_finish=self.ui.ogrenciler_tableWidget.item(self.ui.ogrenciler_tableWidget.currentRow(), 6).text()
+            register_finish.split(".")
+            gun_1 = register_finish[0] + register_finish[1]
+            ay_1 = register_finish[3] + register_finish[4]
+            yil_1 = register_finish[6] + register_finish[7] + register_finish[8] + register_finish[9]
+            f = QDate(int(yil_1), int(ay_1), int(gun_1))
+            self.ui.register_finish_dateEdit.setDate(f)
         except Exception as error:
             self.ui.statusBar.showMessage("Aradığınız Kişi Bulunamadı....", 6000)
 
@@ -210,8 +291,8 @@ ORDER BY
         soyad = self.ui.ogr_surname_lineEdit.text().upper()
         numara = self.ui.ogr_number_edit.text()
         brans = self.ui.brans_combox.currentText()
-        kayit = self.ui.register_edit.text()
-        bitis = self.ui.register_finish_edit.text()
+        kayit = self.ui.register_dateEdit.text()
+        bitis = self.ui.register_finish_dateEdit.text()
         if (len(tc) != 0):
             reply = QMessageBox.question(self, student_update_window_header, update_info_window + isim,
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
@@ -298,9 +379,9 @@ ORDER BY
         soyad = self.ui.ogr_surname_lineEdit.text().upper()
         numara = self.ui.ogr_number_edit.text()
         brans = self.ui.brans_combox.currentText()
-        kayit = self.ui.register_edit.text()
-        bitis = self.ui.register_finish_edit.text()
-        if (len(tc) != 0 and len(isim) != 0 and len(numara) != 0 and len(bitis) != 0):
+        kayit = self.ui.register_dateEdit.text()
+        bitis = self.ui.register_finish_dateEdit.text()
+        if (len(tc) >10 and len(isim) != 0 and len(numara) != 0 and len(bitis) != 0):
             try:
                 self.conn = sql.connect("./db/mxsoftware.db")
                 self.c = self.conn.cursor()
@@ -324,7 +405,26 @@ ORDER BY
             self.ui.statusBar.showMessage(ogr_can_not_be_null_error, 5000)
 
     ########################### EXPORT DATA ####################################
-
+    def load_database(self):        
+        try:
+            self.fname=QFileDialog.getOpenFileName(self, 'Open file', 'D:/',"Select Database File (*.db)")
+            source_file=self.fname[0]
+            destination_folder=os.getcwd()+"/db"
+            shutil.copy(source_file,destination_folder)
+            QMessageBox.question(self, 'İnfo Page', "Database Yedeğiniz Programa Yüklendi Programı Kapatıp Açınız veya tüm sonuçlara tıklayarak bilgileri getirebilirsiniz... mxsoftware.db",
+			QMessageBox.Ok)
+            os.remove(self.fname[0])
+        except Exception as error:
+            print(error)
+    def export_data(self):        
+        try:
+            source_file=os.getcwd()+"/db/mxsoftware.db"
+            destination_folder=QFileDialog.getExistingDirectory(None,"Select Folder : ","C://",QFileDialog.ShowDirsOnly)
+            shutil.copy(source_file,destination_folder)
+            QMessageBox.question(self, 'İnfo Page', "Database Yedeğiniz Kopyalandı... mxsoftware.db",
+			QMessageBox.Ok)
+        except Exception as error:
+            print(error)
     def exportToExcelOgr(self):
         try:
             columnHeaders = []

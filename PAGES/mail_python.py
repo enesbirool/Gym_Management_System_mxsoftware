@@ -121,9 +121,6 @@ class Ui_Form(object):
         self.gonder_button = QtWidgets.QPushButton(Form)
         self.gonder_button.setObjectName("gonder_button")
         self.horizontalLayout_2.addWidget(self.gonder_button)
-        self.cikis_button = QtWidgets.QPushButton(Form)
-        self.cikis_button.setObjectName("cikis_button")
-        self.horizontalLayout_2.addWidget(self.cikis_button)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.verticalLayout_3.addLayout(self.verticalLayout_2)
 
@@ -144,7 +141,7 @@ class Ui_Form(object):
         self.son_ay_button.setText(_translate("Form", "Son Ay Vermeyen"))
         self.label.setText(_translate("Form", "Kalan Mail Gönderimi : "))
         self.gonder_button.setText(_translate("Form", "Gönder"))
-        self.cikis_button.setText(_translate("Form", "Çıkış"))
+
 
 import assets.py_rc.icons_rc as icons_rc
 

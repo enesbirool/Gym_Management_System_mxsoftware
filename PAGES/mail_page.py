@@ -1,9 +1,8 @@
 import os
 import socket
-from datetime import date
 import requests
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QLineEdit, QMessageBox
 from PAGES.mail_python import Ui_Form
 import yagmail
 import sqlite3 as sql

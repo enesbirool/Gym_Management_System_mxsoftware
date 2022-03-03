@@ -1,6 +1,4 @@
-import shutil
-
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QApplication
 from PAGES.main_page import MainPage
 from qt_material import apply_stylesheet
 import requests

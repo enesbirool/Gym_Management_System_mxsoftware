@@ -1,17 +1,12 @@
 import os
 import shutil
-import socket
 import sqlite3 as sql
 import datetime
 import pandas as pd
-import requests
-import yagmail
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import *
-from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem, QMainWindow, QMessageBox, QFileDialog
 from PAGES.mail_page import MailPage
 from PAGES.aidat_add import AidatAdd
 from PAGES.app_info import AppInfoPage

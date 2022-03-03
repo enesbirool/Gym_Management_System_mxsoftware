@@ -1,5 +1,5 @@
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QFileDialog, QMessageBox
 from PAGES.profile_python import Ui_Form
 import sqlite3 as sql
 from assets.comments import *

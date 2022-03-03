@@ -1,14 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'D:/project/assets/GUI/main.ui'
-#
-# Created by: PyQt5 UI code generator 5.6
-#
-# WARNING! All changes made in this file will be lost!
-import datetime
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -369,9 +359,9 @@ class Ui_MainWindow(object):
         self.brans_combox.setItemText(3, _translate("MainWindow", "Karate"))
         self.brans_combox.setItemText(4, _translate("MainWindow", "Fitness"))
         self.label_4.setText(_translate("MainWindow", "Kayıt Tarihi    :    "))
-        self.register_dateEdit.setDisplayFormat(_translate("MainWindow", "dd.MM.yyyy"))
+        self.register_dateEdit.setDisplayFormat(_translate("MainWindow", "dd/MM/yyyy"))
         self.label_6.setText(_translate("MainWindow", "Kayıt Bitiş       :   "))
-        self.register_finish_dateEdit.setDisplayFormat(_translate("MainWindow", "dd.MM.yyyy"))
+        self.register_finish_dateEdit.setDisplayFormat(_translate("MainWindow", "dd/MM/yyyy"))
         item = self.ogrenciler_tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "TC"))
         item = self.ogrenciler_tableWidget.horizontalHeaderItem(1)
@@ -404,7 +394,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Tarih"))
         item = self.aidatlar_tableWidget.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Ücret"))
-        self.label_9.setText(_translate("MainWindow", "Copyright © MXSoftware 2022 Tüm Hakları Saklıdır. Coded By Enes Birol"))
+        self.label_9.setText(_translate("MainWindow", "Copyright © Anka Spor Akademi 2022 Tüm Hakları Saklıdır. Coded By Enes Birol"))
         self.menuMenu.setTitle(_translate("MainWindow", "Menu"))
         self.menuSettings.setTitle(_translate("MainWindow", "Ayarlar"))
         self.actionExit.setText(_translate("MainWindow", "Exit"))
@@ -418,7 +408,5 @@ class Ui_MainWindow(object):
         self.actionBilgi_Boloncuklar_2.setText(_translate("MainWindow", "Bilgi Boloncukları"))
         self.actionApp_nfo.setText(_translate("MainWindow", "Uygulama Hakkında"))
         self.actionToplu_Mail_G_nder.setText(_translate("MainWindow", "Toplu Mail Gönder"))
-        self.register_dateEdit.setDate(datetime.date.today())
-        self.register_finish_dateEdit.setDate(datetime.date.today())
 
 import assets.py_rc.icons_rc as icons_rc

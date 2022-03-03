@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget
 from PAGES.app_info_python import Ui_Form
 
 class AppInfoPage(QWidget):

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QMessageBox, QWidget
 from PAGES.aidat_add_python import Ui_Form
 import sqlite3 as sql
 from assets.comments import *

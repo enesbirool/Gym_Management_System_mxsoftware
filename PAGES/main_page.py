@@ -1,8 +1,11 @@
 import os
 import shutil
+import socket
 import sqlite3 as sql
 import datetime
 import pandas as pd
+import requests
+import yagmail
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QDate
@@ -32,13 +35,11 @@ class MainPage(QMainWindow):
         self.aidat_add_page = AidatAdd()
         self.profile_page = ProfilePage()
         self.mail_page=MailPage()
-
         self.ui.actionlicence_sozlesme.triggered.connect(self.open_app_info_page)       
         self.ui.ogr_export_button.hide()
         self.ui.aidat_export_button.hide()
         self.ui.actionExport_Data.toggled[bool].connect(self.btnstate)    
         self.ui.actionBilgi_Boloncuklar_2.toggled[bool].connect(self.BoloncukState)
-
         self.ui.ogrenciler_tableWidget.itemSelectionChanged.connect(self.ListOnClick)
         self.ui.ogr_export_button.clicked.connect(self.exportToExcelOgr)
 
@@ -285,6 +286,8 @@ ORDER BY
         except Exception as error:
             self.ui.statusBar.showMessage("Aradığınız Kişi Bulunamadı....", 6000)
 
+
+
     def btnUpdate(self):
         tc = self.ui.ogr_tc_edit.text()
         isim = self.ui.ogr_name_edit.text().upper()
@@ -315,7 +318,6 @@ ORDER BY
                 self.ui.statusBar.showMessage(cancel_update_student, 5000)
         else:
             self.ui.statusBar.showMessage(select_student_for_update, 5000)
-
     def btnSilClick(self):
         id = self.ui.ogr_tc_edit.text()
         isim = self.ui.ogr_name_edit.text()
@@ -393,7 +395,7 @@ ORDER BY
                 self.conn = sql.connect("./db/mxsoftware.db")
                 self.c = self.conn.cursor()
                 self.c.execute("INSERT INTO details VALUES (?,?,?,?,?,?,?,?,?)",
-                               (tc,"null","null","null","null","null","null","null","null"))
+                               (tc," "," "," "," "," "," "," "," "))
                 self.conn.commit()
                 self.c.close()
                 self.ui.statusBar.showMessage(register_accept, 5000)

